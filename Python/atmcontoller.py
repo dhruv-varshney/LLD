@@ -16,7 +16,7 @@ class ATMcontroller:
             account_number = atm.get_account_number_from_card()
             account = self.account_manager.get_account(account_number)
             if account:
-                print(f"Balance in Bank is {account.getbalance()}")
+                print(f"Balance in Bank is {account.get_balance()}")
             else:
                 print("Issue in fetching bank details. Please contact your bank")
                 return
@@ -29,7 +29,7 @@ class ATMcontroller:
             print(
                 f"Transaction which is {transaction_type} is successfully completed. Transaction id: {transaction_id}")
             print(
-                f"Final Balance for cardHolder: {card_user} with accountNumber: {account.getaccountNumber()} is {account.getbalance()}")
+                f"Final Balance for cardHolder: {card_user} with accountNumber: {account.get_account_number()} is {account.get_balance()}")
             for account_number, account in self.account_manager.get_all_accounts().items():
                 print(account)
         else:

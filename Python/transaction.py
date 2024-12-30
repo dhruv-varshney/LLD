@@ -28,7 +28,7 @@ class Transaction:
         return transactionid
 
     def __withdraw(self, amount):
-        if self.account.getbalance() >= amount:
+        if self.account.get_balance() >= amount:
             self.account.deduct_balance(amount)
         else:
             print("Entered amount is more than the Balance in account")

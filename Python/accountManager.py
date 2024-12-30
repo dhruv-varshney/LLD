@@ -7,7 +7,7 @@ class AccountManager:
         self.lock = threading.Lock()
     def add(self,account):
         with self.lock:
-            self.dict[account.getaccountNumber()] = account
+            self.dict[account.get_account_number()] = account
     def get_all_accounts(self):
         with self.lock:
             return self.dict

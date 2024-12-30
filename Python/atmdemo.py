@@ -32,6 +32,9 @@ class ATMDemo:
         atmcontroller.process_card(card3, "WITHDRAW", 40000)
         card4 = Card("6522-6000-1086-4383", 1974)
         atmcontroller.process_card(card4, "WITHDRAW", 40000)
+        card5 = Card("6522-6000-1086-4380",1970)
+        atmcontroller.process_card(card5,"TRANSFER",4000, "0000")
+
 
 
 if __name__ == "__main__":

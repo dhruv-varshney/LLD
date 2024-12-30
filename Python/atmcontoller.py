@@ -9,7 +9,7 @@ class ATMcontroller:
         self.card_to_account_map = card_to_account_map
         self.card_to_user_map = card_to_user_map
 
-    def process_card(self, card, transaction_type, amount):
+    def process_card(self, card, transaction_type, amount, target_account_number = None):
         card_user = card.get_user_name(self.card_to_user_map)
         atm = AtmManagement(card, self.card_to_account_map)
         if atm.authenticate() and card_user:
@@ -20,7 +20,12 @@ class ATMcontroller:
             else:
                 print("Issue in fetching bank details. Please contact your bank")
                 return
-            transaction = Transaction(account, transaction_type, amount)
+            if target_account_number not in self.account_manager.get_all_accounts():
+                print("Account does not exist to transfer")
+                return
+            target_account = self.account_manager.get_account(target_account_number)
+            transaction = Transaction(account, transaction_type, amount, target_account)
+
             transaction_id = transaction.process()
             if transaction_type == "WITHDRAW":
                 cash_dispenser = Cashdispenser(account, amount)
